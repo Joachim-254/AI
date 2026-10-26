@@ -1,90 +1,132 @@
-ARetail Sales Data
-This repository contains two Excel datasets with retail sales records
-from branches in Kenya. The files can be used for basic data cleaning,
-exploratory data analysis, reporting, and comparison of product activity
-across branches and dates.
-Repository Contents
----
-File                         Description                    Records Columns
----
-`cleanshelf_sales(1).xlsx`   CleanShelf sales                     7 5
-records,  
-including unit  
-price and  
-quantity sold
-`naivas_sales.xlsx`          Naivas sales                         8 3
-activity by  
-date, branch,  
-and product
-Each workbook contains a single worksheet named `Sheet1`.
-Dataset Details
-CleanShelf sales
-The CleanShelf workbook contains the following fields:
-Column       Description
----
-`Branch`     Branch/location where the sale was recorded
-`Date`       Date of the sales record
-`Product`    Product name and package size
-`Price`      Recorded product price
-`Quantity`   Quantity sold
-The supplied records are dated 7 February 2026 and cover Nairobi,
-Kisumu, Mombasa, Machakos, Meru, Embu, and Nyeri.
-Naivas sales
-The Naivas workbook contains the following fields:
-Column      Description
----
-`Date`      Date of the sales record
-`Branch`    Branch/location associated with the record
-`Product`   Product recorded
-The supplied records span February to June 2026 and include Nairobi,
-Kisumu, Mombasa, and Nakuru.
-Getting Started
-Requirements
-Python 3.9 or later
-`pandas`
-`openpyxl`
-Install the dependencies:
-``` bash
-pip install pandas openpyxl
-```
-Load the workbooks
-``` python
-import pandas as pd
+# Retail Sales Data Analysis
 
-cleanshelf = pd.read_excel("cleanshelf_sales(1).xlsx")
-naivas = pd.read_excel("naivas_sales.xlsx")
+## Project Overview
 
-print(cleanshelf.head())
-print(naivas.head())
+This repository contains two Excel datasets containing retail sales records from CleanShelf and Naivas. The datasets can be used for data cleaning, exploratory data analysis (EDA), visualization, and comparison of product activity across different branches in Kenya.
+
+The project aims to explore retail product records, understand branch-level activity, and identify useful patterns in the available data.
+
+## Repository Contents
+
+The repository contains the following files:
+
+- `cleanshelf_sales(1).xlsx` – CleanShelf sales dataset.
+- `naivas_sales.xlsx` – Naivas sales dataset.
+- `README.md` – Project documentation.
+
+## Dataset Description
+
+### 1. CleanShelf Sales Dataset
+
+The CleanShelf dataset contains 7 records with the following columns:
+
+| Column   | Description                          |
+| -------- | ------------------------------------ |
+| Branch   | Location where the sale was recorded |
+| Date     | Date of the sales record             |
+| Product  | Name of the product sold             |
+| Price    | Recorded product price               |
+| Quantity | Quantity sold                        |
+
+The dataset includes records from Nairobi, Kisumu, Mombasa, Machakos, Meru, Embu, and Nyeri.
+
+### 2. Naivas Sales Dataset
+
+The Naivas dataset contains 8 records with the following columns:
+
+| Column  | Description                           |
+| ------- | ------------------------------------- |
+| Date    | Date of the sales record              |
+| Branch  | Branch where the product was recorded |
+| Product | Name of the product                   |
+
+The dataset includes records from February to June 2026 and covers branches in Nairobi, Kisumu, Mombasa, and Nakuru.
+
+## Technologies Used
+
+The following tools and technologies can be used to analyze the datasets:
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
+- Microsoft Excel
+
+## Getting Started
+
+### Prerequisites
+
+Ensure Python is installed on your computer.
+
+Install the required libraries using:
+
 ```
-Possible Uses
-Explore product activity across branches.
-Summarize sales quantities and prices in the CleanShelf dataset.
-Compare recorded product activity by branch and date.
-Create charts, pivot tables, and summary reports.
-Practice data cleaning and exploratory data analysis with Excel data
-in Python.
-Data Notes and Limitations
-The files contain small sample datasets (7 CleanShelf rows and 8
-Naivas rows).
-The CleanShelf dataset includes both `Price` and `Quantity`, while
-the Naivas dataset does not include price or quantity fields. Direct
-revenue or sales-volume comparisons between the two datasets are
-therefore not supported by the supplied columns.
-The CleanShelf column names `Product` and `Quantity` contain
-trailing spaces. Consider normalizing column names before analysis.
-Currency is not explicitly identified in the workbook, so do not
-assume a currency without confirming the source.
-The data is presented as supplied; completeness, accuracy, and
-whether the records represent all sales have not been independently
-verified.
-Suggested Data Preparation
-You can standardize column names before analysis:
-``` python
-cleanshelf.columns = cleanshelf.columns.str.strip()
-naivas.columns = naivas.columns.str.strip()
+pip install pandas numpy matplotlib seaborn openpyxl jupyter
 ```
-License and Attribution
-No license or data attribution information was included with the
-supplied workbooks. Add the appropriate license and source attribution
-before redistributing this repository.
+
+### Loading the Datasets
+
+Use the following Python code to load the datasets:
+
+```
+import pandas as pd# Load CleanShelf datasetcleanshelf = pd.read_excel("cleanshelf_sales(1).xlsx")# Load Naivas datasetnaivas = pd.read_excel("naivas_sales.xlsx")# Display the first five recordsprint(cleanshelf.head())print(naivas.head())
+```
+
+## Data Cleaning
+
+Before analysis, clean and standardize the column names:
+
+```
+cleanshelf.columns = cleanshelf.columns.str.strip()naivas.columns = naivas.columns.str.strip()
+```
+
+Check for missing values:
+
+```
+print(cleanshelf.isnull().sum())print(naivas.isnull().sum())
+```
+
+Check for duplicate records:
+
+```
+print(cleanshelf.duplicated().sum())print(naivas.duplicated().sum())
+```
+
+## Potential Analysis
+
+The datasets can be used to perform the following analyses:
+
+1. Branch Analysis: Examine product records across different branches.
+2. Product Analysis: Identify the products appearing in the datasets.
+3. Price Analysis: Explore product prices in the CleanShelf dataset.
+4. Quantity Analysis: Examine quantities sold in the CleanShelf dataset.
+5. Time Analysis: Explore sales records over different dates.
+6. Comparative Analysis: Compare product and branch activity between CleanShelf and Naivas.
+
+## Limitations
+
+- The datasets contain relatively few records.
+- The Naivas dataset does not include price or quantity information.
+- Revenue comparisons between the two retailers cannot be performed using the supplied columns alone.
+- The currency used in the CleanShelf dataset is not explicitly specified.
+- The datasets may not represent the complete sales activities of the retailers.
+
+## Expected Outcomes
+
+The project provides an opportunity to:
+
+- Understand retail sales data.
+- Apply Python data analysis techniques.
+- Identify patterns in product and branch records.
+- Develop data visualization skills.
+- Generate meaningful insights from structured datasets.
+
+## Conclusion
+
+This project uses CleanShelf and Naivas retail datasets to explore product and branch-level sales information. Through data cleaning, exploratory data analysis, and visualization, the project provides a foundation for understanding retail data and extracting useful business insights.
+
+## License
+
+No license was provided with the datasets. Appropriate licensing and data-source attribution should be added before public redistribution.
